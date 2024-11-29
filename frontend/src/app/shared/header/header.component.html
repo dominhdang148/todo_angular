@@ -1,6 +1,6 @@
 <header>
   <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
-    <div class="container-fluid">
+    <div class="container">
       <a [routerLink]="['']" class="navbar-brand"> TODO </a>
       <button
         class="navbar-toggler"
@@ -16,10 +16,22 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" [routerLink]="['new']"> Create new todo </a>
+            <a
+              class="nav-link"
+              [routerLinkActive]="['active']"
+              [routerLink]="['new']"
+            >
+              Create new task
+            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" [routerLink]="['list']"> View Todo list </a>
+            <a
+              class="nav-link"
+              [routerLinkActive]="['active']"
+              [routerLink]="['list']"
+            >
+              View Task list
+            </a>
           </li>
         </ul>
       </div>
