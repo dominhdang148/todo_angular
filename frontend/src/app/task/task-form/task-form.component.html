@@ -4,30 +4,60 @@
       <h1>Create New Task</h1>
     </div>
     <div class="card-body">
-      <form>
+      <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
         <div class="row">
           <div class="my-2 col-md-6">
             <label class="form-label fw-bold">Title</label>
             <input
+              formControlName="title"
               type="text"
               class="form-control"
               placeholder="Enter your task title"
             />
+            <div
+              *ngIf="
+                taskForm.get('title')?.errors?.['required'] &&
+                taskForm.get('title')?.touched
+              "
+              class="text-danger fs-6"
+            >
+              Title is required
+            </div>
           </div>
           <div class="my-2 col-md-6">
             <label class="form-label fw-bold">Due date</label>
-            <input type="datetime-local" class="form-control" />
+            <input
+              formControlName="dueDate"
+              type="datetime-local"
+              class="form-control"
+            />
+            <div
+              *ngIf="
+                taskForm.get('dueDate')?.errors?.['required'] &&
+                taskForm.get('dueDate')?.touched
+              "
+              class="text-danger fs-6"
+            >
+              Due date is required
+            </div>
           </div>
         </div>
         <div class="my-2">
           <label class="form-label fw-bold">Description</label>
           <textarea
             rows="3"
+            formControlName="description"
             class="form-control"
             placeholder="Enter your task description (optional)"
           ></textarea>
         </div>
-        <button type="submit" class="btn my-2 btn-dark">Save task</button>
+        <button
+          [disabled]="taskForm.invalid"
+          type="submit"
+          class="btn my-2 btn-dark"
+        >
+          Save task
+        </button>
       </form>
     </div>
   </div>
